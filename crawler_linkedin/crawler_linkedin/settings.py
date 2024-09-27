@@ -59,6 +59,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    # 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None, 
     #    "crawler_linkedin.middlewares.CrawlerLinkedinDownloaderMiddleware": 543,
 }
 
@@ -103,3 +104,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 # Filtros para evitar duplicação de requests
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+# RETRY_ENABLED = True
+# RETRY_TIMES = 10
+# RETRY_HTTP_CODES = [301, 302, 500, 502, 503, 504, 429]
+# RETRY_BACKOFF_BASE = 5
