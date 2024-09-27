@@ -9,7 +9,8 @@ class LinkedInJobsSpider(scrapy.Spider):
         'RETRY_ENABLED': True,
         'RETRY_TIMES': 10,  # Número de tentativas
         'RETRY_HTTP_CODES': [301, 302, 500, 502, 503, 504, 429],  # Códigos HTTP que acionam retry
-        'CONCURRENT_REQUESTS': 1
+        'CONCURRENT_REQUESTS': 1,
+        'DOWNLOAD_DELAY': 10
 
     
     }
@@ -24,12 +25,12 @@ class LinkedInJobsSpider(scrapy.Spider):
 
     
         for url in start_urls:
-            # Envia a requisição com redirecionamento desabilitado
+            sleep(3)
             yield scrapy.Request(url, callback=self.parse, meta={'dont_redirect': True, 'download_delay': self.retry_delay}, dont_filter=True)
 
 
     def parse(self, response):
-        sleep(13)
+        
         # Extrair todo o texto do body
         details = response.css('div.decorated-job-posting__details ::text').getall()
 
